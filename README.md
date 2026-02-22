@@ -1,8 +1,11 @@
 # Pyne Dog Breed Explorer
 
 **GCP Project ID:** `pyne-dog-breeds-488122`
+
 **Repo:** https://github.com/thomasnicolet/pyne-dog-breeds
+
 **dbt Docs:** https://thomasnicolet.github.io/pyne-dog-breeds
+
 **Dashboard:** https://lookerstudio.google.com/reporting/00c5a63b-aee8-4415-b4df-fc4070d95ba6
 
 End-to-end data pipeline ingesting dog breed data from the [Dog API](https://thedogapi.com), transforming it with dbt, and exposing analytics via Looker Studio.
