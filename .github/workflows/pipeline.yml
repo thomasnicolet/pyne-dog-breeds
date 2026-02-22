@@ -19,11 +19,11 @@ jobs:
 
       - name: Set up GCP credentials
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" > /tmp/sa-key.json
+          echo '${{ secrets.GCP_SA_KEY }}' > /tmp/sa-key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa-key.json" >> $GITHUB_ENV
 
       - name: Install ingestion dependencies
-        run: pip install "dlt[bigquery]"
+        run: pip install "dlt[bigquery]" google-cloud-storage
 
       - name: Run dlt pipeline
         working-directory: ingestion
