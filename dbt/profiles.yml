@@ -1,0 +1,18 @@
+pyne_dog_breeds:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: pyne-dog-breeds-488122
+      dataset: dev
+      location: EU
+      threads: 4
+    prod:
+      type: bigquery
+      method: service-account
+      project: pyne-dog-breeds-488122
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
+      dataset: prod
+      location: EU
+      threads: 4

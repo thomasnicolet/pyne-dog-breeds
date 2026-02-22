@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_breeds
+    description: "Normalised and typed dog breed data from the Dog API"
+    columns:
+      - name: breed_id
+        description: "Primary key from the Dog API"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        tests:
+          - not_null
+      - name: life_span_min_years
+        description: "Lower bound of expected life span in years"
+      - name: life_span_max_years
+        description: "Upper bound of expected life span in years"
+      - name: weight_max_lbs
+        description: "Upper bound of breed weight in pounds"

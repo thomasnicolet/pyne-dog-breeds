@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dbt
+        run: pip install dbt-bigquery
+
+      - name: Set up GCP credentials
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > /tmp/sa-key.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa-key.json" >> $GITHUB_ENV
+
+      - name: dbt deps
+        working-directory: dbt
+        run: dbt deps --profiles-dir .
+
+      - name: dbt run (dev)
+        working-directory: dbt
+        run: dbt run --target dev --profiles-dir .
+
+      - name: dbt test (dev)
+        working-directory: dbt
+        run: dbt test --target dev --profiles-dir .

@@ -1,0 +1,29 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# dlt
+.dlt/secrets.toml
+
+# Local secrets (testing only)
+ingestion/.env.local
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+# terraform/.terraform.lock.hcl  # keep this committed — pins provider versions
+
+# Credentials
+*.json
+/tmp/
+
+# OS
+.DS_Store

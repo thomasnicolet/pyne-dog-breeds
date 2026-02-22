@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_breed
+    description: "Dog breed dimension with enriched attributes and size classification"
+    columns:
+      - name: breed_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        tests:
+          - not_null
+      - name: size_class
+        description: "Derived from weight_max_lbs: Small (≤20 lbs), Medium (≤60 lbs), Large (>60 lbs)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["Small", "Medium", "Large", "Unknown"]
+      - name: life_span_avg_years
+        description: "Average of min/max life span"

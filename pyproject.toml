@@ -1,0 +1,18 @@
+[project]
+name = "pyne-dog-breeds"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "dlt[bigquery]>=1.0.0",
+    "dbt-bigquery>=1.8.0",
+    "google-cloud-storage>=2.0.0",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+addopts = "-v -s --log-cli-level=INFO"
+testpaths = ["tests"]
+log_cli = true
+log_cli_format = "%(levelname)s: %(message)s"

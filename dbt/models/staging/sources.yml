@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze
+    dataset: bronze
+    description: "Raw dog breed data loaded by dlt from the Dog API"
+    tables:
+      - name: dog_api_raw
+        description: "One row per dog breed, replaced on every pipeline run"
