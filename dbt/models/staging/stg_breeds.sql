@@ -11,9 +11,9 @@ cleaned as (
         temperament,
         life_span,
 
-        -- parse "10 - 12 years" → min / max
+        -- parse "12-15" or "10 - 12 years" → min / max
         safe_cast(regexp_extract(life_span, r'^(\d+)')         as int64) as life_span_min_years,
-        safe_cast(regexp_extract(life_span, r'- (\d+)')        as int64) as life_span_max_years,
+        safe_cast(regexp_extract(life_span, r'-\s*(\d+)')      as int64) as life_span_max_years,
 
         -- parse "6 - 13" weight strings
         safe_cast(trim(split(weight__imperial, '-')[safe_offset(0)]) as float64) as weight_min_lbs,
