@@ -120,9 +120,15 @@ stg_breeds             (typed, parsed life_span and weight strings)
         └──► fact_weight_life_span (analytics-ready fact table)
 ```
 
-## Findings
+## Findings & Business Impact
 
-Dog breed data reveals a clear inverse relationship between size and longevity: small breeds (≤20 lbs) average 13–15 years while large breeds (>60 lbs) average 8–10 years. Toy and Terrier groups dominate the small/long-lived segment. For a product like a breed recommendation engine, size class and life span are the two highest-signal attributes for matching breeds to owner lifestyle — a family expecting a 15-year commitment makes a very different choice than one open to a 8-year one.
+The data confirms a clear inverse relationship between size and longevity: small breeds (≤20 lbs) average 13–15 years, large breeds (>60 lbs) average 8–10 years. The Working and Herding groups dominate by count; Toy and Terrier breeds cluster at the high end of life span. About 40% of breeds have incomplete life span data — worth flagging before any downstream product decision relies on it.
+
+That said, the most important thing I'd do before v2 of this dashboard is sit with a product stakeholder. "Dog Breed Explorer" could mean a lot of things: a public-facing breed comparison tool, an internal enrichment layer for a pet insurance product, or something else entirely. The questions the dashboard should answer depend on the user — not on what the API happens to expose.
+
+What the pipeline enables is the foundation: a reliable, tested, daily-refreshed dataset that any downstream product or ML feature can build on. The current mart models cover size, weight, and life span. With one additional model, temperament traits could be unnested and counted — enabling filtering by characteristics like "good with children" or "low energy". Image URLs are also available in the raw data, unused for now.
+
+The architecture is deliberately simple: replace GitHub Actions cron with Cloud Run Jobs and add a proper orchestrator (Airflow, Dagster) when the pipeline count grows beyond one. The dbt lineage and test coverage make that migration low-risk.
 
 ---
 
